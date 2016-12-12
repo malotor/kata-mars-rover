@@ -31,7 +31,11 @@ class Rover
 
     public function move($command)
     {
-        $newPosition = new Position($this->position->getX(), $this->position->getY() + 1 );
+        if ($this->aspect == 'N')
+            $newPosition = new Position($this->position->getX(), $this->position->getY() + 1 );
+        if ($this->aspect == 'S')
+            $newPosition = new Position($this->position->getX(), $this->position->getY() - 1 );
+
         $this->position = $newPosition;
     }
 

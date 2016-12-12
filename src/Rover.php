@@ -31,29 +31,38 @@ class Rover
 
     public function move($command)
     {
-        if ($this->aspect == 'N')
+
+        switch ($this->aspect)
         {
-            if ($command == 'f')
-                $newPosition = new Position($this->position->getX(), $this->position->getY() + 1 );
-            if ($command == 'b')
-                $newPosition = new Position($this->position->getX(), $this->position->getY() - 1 );
+            case 'N':
+                if ($command == 'f')
+                    $newPosition = new Position($this->position->getX(), $this->position->getY() + 1 );
+                if ($command == 'b')
+                    $newPosition = new Position($this->position->getX(), $this->position->getY() - 1 );
 
-            if ($command == 'l')
-            {
-                $this->aspect = 'W';
-                $newPosition = $this->position;
-            }
+                if ($command == 'l')
+                {
+                    $this->aspect = 'W';
+                    $newPosition = $this->position;
+                }
+                break;
 
+            case 'S':
+                if ($command == 'f')
+                    $newPosition = new Position($this->position->getX(), $this->position->getY() - 1 );
+                if ($command == 'b')
+                    $newPosition = new Position($this->position->getX(), $this->position->getY() + 1 );
+
+                break;
+
+            case 'W':
+                if ($command == 'l')
+                {
+                    $this->aspect = 'S';
+                    $newPosition = $this->position;
+                }
+                break;
         }
-        if ($this->aspect == 'S')
-        {
-            if ($command == 'f')
-                $newPosition = new Position($this->position->getX(), $this->position->getY() - 1 );
-            if ($command == 'b')
-                $newPosition = new Position($this->position->getX(), $this->position->getY() + 1 );
-
-        }
-
 
         $this->position = $newPosition;
     }

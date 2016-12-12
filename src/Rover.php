@@ -44,6 +44,11 @@ class Rover
                 {
                     $this->aspect = 'W';
                 }
+
+                if ($command == 'r')
+                {
+                    $this->aspect = 'E';
+                }
                 break;
 
             case 'S':
@@ -52,10 +57,33 @@ class Rover
                 if ($command == 'b')
                     $this->position = new Position($this->position->getX(), $this->position->getY() + 1 );
 
+                if ($command == 'l')
+                {
+                    $this->aspect = 'E';
+                }
+                if ($command == 'r')
+                {
+                    $this->aspect = 'W';
+                }
                 break;
 
             case 'W':
                 if ($command == 'l')
+                {
+                    $this->aspect = 'S';
+                }
+                if ($command == 'r')
+                {
+                    $this->aspect = 'N';
+                }
+                break;
+
+            case 'E':
+                if ($command == 'l')
+                {
+                    $this->aspect = 'N';
+                }
+                if ($command == 'r')
                 {
                     $this->aspect = 'S';
                 }

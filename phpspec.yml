@@ -1,0 +1,4 @@
+suites:
+    default:
+        namespace: Prosodie\MarsRover
+        psr4_prefix: Prosodie\MarsRover

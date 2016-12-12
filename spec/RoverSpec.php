@@ -51,4 +51,19 @@ class RoverSpec extends ObjectBehavior
         $this->getCordX()->shouldReturn(0);
         $this->getCordY()->shouldReturn(-1);
     }
+
+    function it_should_decrement_Y_cord_if_aspect_is_N_when_command_backward_is_received()
+    {
+        $this->move("b");
+        $this->getCordX()->shouldReturn(0);
+        $this->getCordY()->shouldReturn(-1);
+    }
+
+    function it_should_increment_Y_cord_if_aspect_is_N_when_command_backward_is_received()
+    {
+        $this->beConstructedWith(0,0,'S');
+        $this->move("b");
+        $this->getCordX()->shouldReturn(0);
+        $this->getCordY()->shouldReturn(1);
+    }
 }

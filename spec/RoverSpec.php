@@ -66,4 +66,15 @@ class RoverSpec extends ObjectBehavior
         $this->getCordX()->shouldReturn(0);
         $this->getCordY()->shouldReturn(1);
     }
+
+    function it_should_changed_aspect_when_command_left_is_recived()
+    {
+        $this->move("l");
+
+        $this->getCordX()->shouldReturn(0);
+        $this->getCordY()->shouldReturn(0);
+        $this->getAspect()->shouldReturn("W");
+
+    }
+
 }

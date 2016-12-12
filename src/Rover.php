@@ -36,22 +36,21 @@ class Rover
         {
             case 'N':
                 if ($command == 'f')
-                    $newPosition = new Position($this->position->getX(), $this->position->getY() + 1 );
+                    $this->position = new Position($this->position->getX(), $this->position->getY() + 1 );
                 if ($command == 'b')
-                    $newPosition = new Position($this->position->getX(), $this->position->getY() - 1 );
+                    $this->position = new Position($this->position->getX(), $this->position->getY() - 1 );
 
                 if ($command == 'l')
                 {
                     $this->aspect = 'W';
-                    $newPosition = $this->position;
                 }
                 break;
 
             case 'S':
                 if ($command == 'f')
-                    $newPosition = new Position($this->position->getX(), $this->position->getY() - 1 );
+                    $this->position = new Position($this->position->getX(), $this->position->getY() - 1 );
                 if ($command == 'b')
-                    $newPosition = new Position($this->position->getX(), $this->position->getY() + 1 );
+                    $this->position = new Position($this->position->getX(), $this->position->getY() + 1 );
 
                 break;
 
@@ -59,12 +58,10 @@ class Rover
                 if ($command == 'l')
                 {
                     $this->aspect = 'S';
-                    $newPosition = $this->position;
                 }
                 break;
         }
 
-        $this->position = $newPosition;
     }
 
 }

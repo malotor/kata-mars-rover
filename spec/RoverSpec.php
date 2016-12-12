@@ -8,8 +8,12 @@ use Prophecy\Argument;
 
 class RoverSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+
+    function it_should_have_with_initial_postion()
     {
-        $this->shouldHaveType(Rover::class);
+        $this->getCordX()->shouldReturn(0);
+        $this->getCordY()->shouldReturn(0);
     }
+
+
 }

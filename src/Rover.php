@@ -5,24 +5,23 @@ namespace Prosodie\MarsRover;
 class Rover
 {
 
-    private $x;
-    private $y;
+    private $position;
+    private $aspect;
 
     public function __construct($cordX = 0, $cordY = 0, $aspect = 'N')
     {
-        $this->x = $cordX;
-        $this->y = $cordY;
         $this->aspect = $aspect;
+        $this->position = new Position($cordX, $cordY);
     }
 
     public function getCordX()
     {
-        return $this->x;
+        return $this->position->getX();
     }
 
     public function getCordY()
     {
-        return $this->y;
+        return $this->position->getY();
     }
 
     public function getAspect()

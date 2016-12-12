@@ -38,6 +38,12 @@ class Rover
             if ($command == 'b')
                 $newPosition = new Position($this->position->getX(), $this->position->getY() - 1 );
 
+            if ($command == 'l')
+            {
+                $this->aspect = 'W';
+                $newPosition = $this->position;
+            }
+
         }
         if ($this->aspect == 'S')
         {
@@ -47,6 +53,7 @@ class Rover
                 $newPosition = new Position($this->position->getX(), $this->position->getY() + 1 );
 
         }
+
 
         $this->position = $newPosition;
     }

@@ -33,7 +33,14 @@ class RoverSpec extends ObjectBehavior
     function it_should_be_created_with_a_diferent_aspect()
     {
         $this->beConstructedWith(3,4,'S');
-
         $this->getAspect()->shouldReturn('S');
     }
+
+    function it_should_increment_Y_cord_if_aspect_is_N_when_command_forward_is_recived()
+    {
+        $this->move("f");
+        $this->getCordX()->shouldReturn(0);
+        $this->getCordY()->shouldReturn(1);
+    }
+
 }

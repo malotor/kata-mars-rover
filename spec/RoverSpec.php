@@ -22,4 +22,11 @@ class RoverSpec extends ObjectBehavior
         $this->getCordX()->shouldReturn(3);
         $this->getCordY()->shouldReturn(4);
     }
+
+    function it_should_be_created_with_an_aspect()
+    {
+        $this->beConstructedWith(3,4,'N');
+
+        $this->getAspect()->shouldReturn('N');
+    }
 }

@@ -29,4 +29,11 @@ class RoverSpec extends ObjectBehavior
 
         $this->getAspect()->shouldReturn('N');
     }
+
+    function it_should_be_created_with_a_diferent_aspect()
+    {
+        $this->beConstructedWith(3,4,'S');
+
+        $this->getAspect()->shouldReturn('S');
+    }
 }

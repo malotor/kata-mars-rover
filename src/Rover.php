@@ -24,4 +24,9 @@ class Rover
         return $this->y;
     }
 
+    public function getAspect()
+    {
+        return 'N';
+    }
+
 }

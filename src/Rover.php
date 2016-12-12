@@ -8,10 +8,11 @@ class Rover
     private $x;
     private $y;
 
-    public function __construct($cordX = 0, $cordY = 0)
+    public function __construct($cordX = 0, $cordY = 0, $aspect = 'N')
     {
         $this->x = $cordX;
         $this->y = $cordY;
+        $this->aspect = $aspect;
     }
 
     public function getCordX()
@@ -26,7 +27,7 @@ class Rover
 
     public function getAspect()
     {
-        return 'N';
+        return $this->aspect;
     }
 
 }

@@ -29,4 +29,10 @@ class Rover
         return $this->aspect;
     }
 
+    public function move($command)
+    {
+        $newPosition = new Position($this->position->getX(), $this->position->getY() + 1 );
+        $this->position = $newPosition;
+    }
+
 }

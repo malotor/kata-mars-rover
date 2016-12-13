@@ -33,84 +33,20 @@ class Rover
         {
             case 'f':
 
-                switch ($this->aspect) {
-                    case 'N':
-                        $this->position = new Position($this->position->getX(), $this->position->getY() + 1 );
-                        break;
-                    case 'S':
-                        $this->position = new Position($this->position->getX(), $this->position->getY() - 1 );
-
-                        break;
-                    case 'W':
-                        $this->position = new Position($this->position->getX()-1, $this->position->getY()  );
-
-                        break;
-                    case 'E':
-                        $this->position = new Position($this->position->getX()+1, $this->position->getY()  );
-
-                        break;
-                }
+                $this->moveForward();
 
                 break;
 
             case 'b':
-                switch ($this->aspect) {
-                    case 'N':
-                        $this->position = new Position($this->position->getX(), $this->position->getY() - 1 );
-                        break;
-                    case 'S':
-                        $this->position = new Position($this->position->getX(), $this->position->getY() + 1 );
-
-                        break;
-                    case 'W':
-                        $this->position = new Position($this->position->getX()+1, $this->position->getY()  );
-
-                        break;
-                    case 'E':
-                        $this->position = new Position($this->position->getX()-1, $this->position->getY()  );
-
-                        break;
-                }
+                $this->moveBackward();
                 break;
 
             case 'l':
-                switch ($this->aspect) {
-                    case 'N':
-                        $this->aspect = 'W';
-                        break;
-                    case 'S':
-                        $this->aspect = 'E';
-
-                        break;
-                    case 'W':
-                        $this->aspect = 'S';
-
-                        break;
-                    case 'E':
-                        $this->aspect = 'N';
-
-                        break;
-                }
+                $this->turnLeft();
                 break;
 
             case 'r':
-                switch ($this->aspect) {
-                    case 'N':
-                        $this->aspect = 'E';
-                        break;
-                    case 'S':
-                        $this->aspect = 'W';
-
-                        break;
-                    case 'W':
-                        $this->aspect = 'N';
-
-                        break;
-                    case 'E':
-                        $this->aspect = 'S';
-
-                        break;
-                }
+                $this->turnRight();
                 break;
 
         }
@@ -118,4 +54,87 @@ class Rover
 
     }
 
+    private function moveForward()
+    {
+        switch ($this->aspect) {
+            case 'N':
+                $this->position = new Position($this->position->getX(), $this->position->getY() + 1 );
+                break;
+            case 'S':
+                $this->position = new Position($this->position->getX(), $this->position->getY() - 1 );
+
+                break;
+            case 'W':
+                $this->position = new Position($this->position->getX()-1, $this->position->getY()  );
+
+                break;
+            case 'E':
+                $this->position = new Position($this->position->getX()+1, $this->position->getY()  );
+
+                break;
+        }
+    }
+
+    private function moveBackward()
+    {
+        switch ($this->aspect) {
+            case 'N':
+                $this->position = new Position($this->position->getX(), $this->position->getY() - 1 );
+                break;
+            case 'S':
+                $this->position = new Position($this->position->getX(), $this->position->getY() + 1 );
+
+                break;
+            case 'W':
+                $this->position = new Position($this->position->getX()+1, $this->position->getY()  );
+
+                break;
+            case 'E':
+                $this->position = new Position($this->position->getX()-1, $this->position->getY()  );
+
+                break;
+        }
+    }
+
+    private function turnLeft()
+    {
+        switch ($this->aspect) {
+            case 'N':
+                $this->aspect = 'W';
+                break;
+            case 'S':
+                $this->aspect = 'E';
+
+                break;
+            case 'W':
+                $this->aspect = 'S';
+
+                break;
+            case 'E':
+                $this->aspect = 'N';
+
+                break;
+        }
+    }
+
+    private function turnRight()
+    {
+        switch ($this->aspect) {
+            case 'N':
+                $this->aspect = 'E';
+                break;
+            case 'S':
+                $this->aspect = 'W';
+
+                break;
+            case 'W':
+                $this->aspect = 'N';
+
+                break;
+            case 'E':
+                $this->aspect = 'S';
+
+                break;
+        }
+    }
 }

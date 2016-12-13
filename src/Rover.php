@@ -93,6 +93,11 @@ class Rover
 
             case 'E':
 
+                if ($command == 'f')
+                    $this->position = new Position($this->position->getX()+1, $this->position->getY()  );
+                if ($command == 'b')
+                    $this->position = new Position($this->position->getX()-1, $this->position->getY()  );
+
                 if ($command == 'l')
                 {
                     $this->aspect = 'N';

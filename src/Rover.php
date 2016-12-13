@@ -14,6 +14,7 @@ class Rover
         $this->position = new Position($cordX, $cordY);
     }
 
+    /*
     public function getCordX()
     {
         return $this->position->getX();
@@ -23,11 +24,18 @@ class Rover
     {
         return $this->position->getY();
     }
+    */
 
     public function getAspect()
     {
         return $this->aspect;
     }
+
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
 
     public function move($command)
     {

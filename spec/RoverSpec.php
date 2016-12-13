@@ -36,13 +36,47 @@ class RoverSpec extends ObjectBehavior
         $this->getAspect()->shouldReturn('S');
     }
 
-    function it_should_increment_Y_cord_if_aspect_is_N_when_command_forward_is_recived()
+    function it_should_move_along_Y_when_command_forward_is_received()
     {
         $this->move("f");
         $this->getCordX()->shouldReturn(0);
         $this->getCordY()->shouldReturn(1);
-    }
 
+        $this->move("f");
+        $this->getCordX()->shouldReturn(0);
+        $this->getCordY()->shouldReturn(2);
+
+        $this->move("b");
+        $this->getCordX()->shouldReturn(0);
+        $this->getCordY()->shouldReturn(1);
+
+        $this->move("b");
+        $this->getCordX()->shouldReturn(0);
+        $this->getCordY()->shouldReturn(0);
+
+
+        $this->move("l");
+        $this->move("l");
+
+        $this->getAspect()->shouldReturn("S");
+
+        $this->move("f");
+        $this->getCordX()->shouldReturn(0);
+        $this->getCordY()->shouldReturn(-1);
+
+        $this->move("f");
+        $this->getCordX()->shouldReturn(0);
+        $this->getCordY()->shouldReturn(-2);
+
+        $this->move("b");
+        $this->getCordX()->shouldReturn(0);
+        $this->getCordY()->shouldReturn(-1);
+
+        $this->move("b");
+        $this->getCordX()->shouldReturn(0);
+        $this->getCordY()->shouldReturn(0);
+
+    }
 
     function it_should_decrement_Y_cord_if_aspect_is_N_when_command_forward_is_recived()
     {
@@ -50,22 +84,20 @@ class RoverSpec extends ObjectBehavior
         $this->move("f");
         $this->getCordX()->shouldReturn(0);
         $this->getCordY()->shouldReturn(-1);
-    }
 
-    function it_should_decrement_Y_cord_if_aspect_is_N_when_command_backward_is_received()
-    {
+        $this->move("f");
+        $this->getCordX()->shouldReturn(0);
+        $this->getCordY()->shouldReturn(-2);
+
         $this->move("b");
         $this->getCordX()->shouldReturn(0);
         $this->getCordY()->shouldReturn(-1);
-    }
 
-    function it_should_increment_Y_cord_if_aspect_is_N_when_command_backward_is_received()
-    {
-        $this->beConstructedWith(0,0,'S');
         $this->move("b");
         $this->getCordX()->shouldReturn(0);
-        $this->getCordY()->shouldReturn(1);
+        $this->getCordY()->shouldReturn(0);
     }
+
 
     function it_should_changed_aspect_when_command_left_is_received()
     {

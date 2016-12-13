@@ -78,7 +78,7 @@ class RoverSpec extends ObjectBehavior
 
     }
 
-    function it_should_changed_aspect_when_command_left_is_received()
+    function it_should_changed_aspect_when_rotate_command_is_received()
     {
         $this->move("l");
 
@@ -95,10 +95,6 @@ class RoverSpec extends ObjectBehavior
         $this->move("l");
         $this->getAspect()->shouldReturn("N");
 
-    }
-
-    function it_should_changed_aspect_when_command_right_is_received()
-    {
         $this->move("r");
 
         $this->getCordX()->shouldReturn(0);
@@ -113,7 +109,10 @@ class RoverSpec extends ObjectBehavior
 
         $this->move("r");
         $this->getAspect()->shouldReturn("N");
-
     }
+
+
+
+
 
 }

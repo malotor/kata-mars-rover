@@ -99,11 +99,29 @@ class RoverSpec extends ObjectBehavior
     }
 
 
+    function it_should_move_along_X_when_command_forward_is_received_and_facing_W()
+    {
+        $this->move("l");
+        $this->getAspect()->shouldReturn("W");
+        $this->move("f");
+        $this->getPosition()->shouldHavePosition(-1,0);
+        $this->move("f");
+        $this->getPosition()->shouldHavePosition(-2,0);
+
+
+        $this->move("b");
+        $this->getPosition()->shouldHavePosition(-1,0);
+
+        $this->move("b");
+        $this->getPosition()->shouldHavePosition(0,0);
+
+    }
+
     public function getMatchers()
     {
         return [
             'havePosition' => function ($subject, $x, $y) {
-                return ( $subject->getX() == $x || $subject->getY() == $y  );
+                return ( $subject->getX() == $x && $subject->getY() == $y  );
             },
 
         ];

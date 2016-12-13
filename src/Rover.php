@@ -14,21 +14,9 @@ class Rover
         $this->position = new Position($cordX, $cordY);
     }
 
-    /*
-    public function getCordX()
-    {
-        return $this->position->getX();
-    }
-
-    public function getCordY()
-    {
-        return $this->position->getY();
-    }
-    */
-
     public function getAspect()
     {
-        return $this->aspect;
+        return (string) $this->aspect;
     }
 
     public function getPosition()
@@ -40,74 +28,93 @@ class Rover
     public function move($command)
     {
 
-        switch ($this->aspect)
+
+        switch ($command)
         {
-            case 'N':
-                if ($command == 'f')
-                    $this->position = new Position($this->position->getX(), $this->position->getY() + 1 );
-                if ($command == 'b')
-                    $this->position = new Position($this->position->getX(), $this->position->getY() - 1 );
+            case 'f':
 
-                if ($command == 'l')
-                {
-                    $this->aspect = 'W';
+                switch ($this->aspect) {
+                    case 'N':
+                        $this->position = new Position($this->position->getX(), $this->position->getY() + 1 );
+                        break;
+                    case 'S':
+                        $this->position = new Position($this->position->getX(), $this->position->getY() - 1 );
+
+                        break;
+                    case 'W':
+                        $this->position = new Position($this->position->getX()-1, $this->position->getY()  );
+
+                        break;
+                    case 'E':
+                        $this->position = new Position($this->position->getX()+1, $this->position->getY()  );
+
+                        break;
                 }
 
-                if ($command == 'r')
-                {
-                    $this->aspect = 'E';
+                break;
+
+            case 'b':
+                switch ($this->aspect) {
+                    case 'N':
+                        $this->position = new Position($this->position->getX(), $this->position->getY() - 1 );
+                        break;
+                    case 'S':
+                        $this->position = new Position($this->position->getX(), $this->position->getY() + 1 );
+
+                        break;
+                    case 'W':
+                        $this->position = new Position($this->position->getX()+1, $this->position->getY()  );
+
+                        break;
+                    case 'E':
+                        $this->position = new Position($this->position->getX()-1, $this->position->getY()  );
+
+                        break;
                 }
                 break;
 
-            case 'S':
-                if ($command == 'f')
-                    $this->position = new Position($this->position->getX(), $this->position->getY() - 1 );
-                if ($command == 'b')
-                    $this->position = new Position($this->position->getX(), $this->position->getY() + 1 );
+            case 'l':
+                switch ($this->aspect) {
+                    case 'N':
+                        $this->aspect = 'W';
+                        break;
+                    case 'S':
+                        $this->aspect = 'E';
 
-                if ($command == 'l')
-                {
-                    $this->aspect = 'E';
-                }
-                if ($command == 'r')
-                {
-                    $this->aspect = 'W';
-                }
-                break;
+                        break;
+                    case 'W':
+                        $this->aspect = 'S';
 
-            case 'W':
-                if ($command == 'f')
-                    $this->position = new Position($this->position->getX()-1, $this->position->getY()  );
-                if ($command == 'b')
-                    $this->position = new Position($this->position->getX()+1, $this->position->getY()  );
+                        break;
+                    case 'E':
+                        $this->aspect = 'N';
 
-                if ($command == 'l')
-                {
-                    $this->aspect = 'S';
-                }
-                if ($command == 'r')
-                {
-                    $this->aspect = 'N';
+                        break;
                 }
                 break;
 
-            case 'E':
+            case 'r':
+                switch ($this->aspect) {
+                    case 'N':
+                        $this->aspect = 'E';
+                        break;
+                    case 'S':
+                        $this->aspect = 'W';
 
-                if ($command == 'f')
-                    $this->position = new Position($this->position->getX()+1, $this->position->getY()  );
-                if ($command == 'b')
-                    $this->position = new Position($this->position->getX()-1, $this->position->getY()  );
+                        break;
+                    case 'W':
+                        $this->aspect = 'N';
 
-                if ($command == 'l')
-                {
-                    $this->aspect = 'N';
-                }
-                if ($command == 'r')
-                {
-                    $this->aspect = 'S';
+                        break;
+                    case 'E':
+                        $this->aspect = 'S';
+
+                        break;
                 }
                 break;
+
         }
+
 
     }
 

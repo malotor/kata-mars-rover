@@ -11,14 +11,14 @@ class Rover
     private $position;
     private $aspect;
 
-    public function __construct($cordX = 0, $cordY = 0, $aspect = 'N')
+    public function __construct(Position $position, $aspect = 'N')
     {
         if ($aspect == 'N')
             $this->aspect = new North($this);
         elseif ($aspect == 'S')
             $this->aspect = new South($this);
 
-        $this->position = new Position($cordX, $cordY);
+        $this->position = $position;
     }
 
     public function getAspect()
@@ -79,5 +79,12 @@ class Rover
     private function turnRight()
     {
         $this->aspect->turnRight();
+    }
+
+    static public function create($cordX = 0, $cordY = 0, $aspect = 'N')
+    {
+        $position = new Position($cordX, $cordY);
+
+        return new Self($position, $aspect);
     }
 }

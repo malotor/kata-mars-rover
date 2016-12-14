@@ -2,7 +2,7 @@
 
 namespace Prosodie\MarsRover;
 
-class position
+class Position
 {
 
     private $x;

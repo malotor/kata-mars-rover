@@ -11,16 +11,14 @@ class RoverSpec extends ObjectBehavior
 
     function it_should_have_with_initial_position()
     {
-        $this->getCordX()->shouldReturn(0);
-        $this->getCordY()->shouldReturn(0);
+        $this->getPosition()->shouldHavePosition(0,0);
     }
 
     function it_should_be_created_with_a_diferent_initials_positions()
     {
         $this->beConstructedWith(3,4);
+        $this->getPosition()->shouldHavePosition(3,4);
 
-        $this->getCordX()->shouldReturn(3);
-        $this->getCordY()->shouldReturn(4);
     }
 
     function it_should_be_created_with_an_aspect()
@@ -39,21 +37,16 @@ class RoverSpec extends ObjectBehavior
     function it_should_move_along_Y_when_command_forward_is_received()
     {
         $this->move("f");
-        $this->getCordX()->shouldReturn(0);
-        $this->getCordY()->shouldReturn(1);
+        $this->getPosition()->shouldHavePosition(0,1);
 
         $this->move("f");
-        $this->getCordX()->shouldReturn(0);
-        $this->getCordY()->shouldReturn(2);
+        $this->getPosition()->shouldHavePosition(0,2);
 
         $this->move("b");
-        $this->getCordX()->shouldReturn(0);
-        $this->getCordY()->shouldReturn(1);
+        $this->getPosition()->shouldHavePosition(0,1);
 
         $this->move("b");
-        $this->getCordX()->shouldReturn(0);
-        $this->getCordY()->shouldReturn(0);
-
+        $this->getPosition()->shouldHavePosition(0,0);
 
         $this->move("l");
         $this->move("l");
@@ -61,20 +54,16 @@ class RoverSpec extends ObjectBehavior
         $this->getAspect()->shouldReturn("S");
 
         $this->move("f");
-        $this->getCordX()->shouldReturn(0);
-        $this->getCordY()->shouldReturn(-1);
+        $this->getPosition()->shouldHavePosition(0,-1);
 
         $this->move("f");
-        $this->getCordX()->shouldReturn(0);
-        $this->getCordY()->shouldReturn(-2);
+        $this->getPosition()->shouldHavePosition(0,-2);
 
         $this->move("b");
-        $this->getCordX()->shouldReturn(0);
-        $this->getCordY()->shouldReturn(-1);
+        $this->getPosition()->shouldHavePosition(0,-1);
 
         $this->move("b");
-        $this->getCordX()->shouldReturn(0);
-        $this->getCordY()->shouldReturn(0);
+        $this->getPosition()->shouldHavePosition(0,0);
 
     }
 
@@ -82,8 +71,7 @@ class RoverSpec extends ObjectBehavior
     {
         $this->move("l");
 
-        $this->getCordX()->shouldReturn(0);
-        $this->getCordY()->shouldReturn(0);
+        $this->getPosition()->shouldHavePosition(0,0);
         $this->getAspect()->shouldReturn("W");
 
         $this->move("l");
@@ -97,8 +85,7 @@ class RoverSpec extends ObjectBehavior
 
         $this->move("r");
 
-        $this->getCordX()->shouldReturn(0);
-        $this->getCordY()->shouldReturn(0);
+        $this->getPosition()->shouldHavePosition(0,0);
         $this->getAspect()->shouldReturn("E");
 
         $this->move("r");
@@ -112,7 +99,15 @@ class RoverSpec extends ObjectBehavior
     }
 
 
+    public function getMatchers()
+    {
+        return [
+            'havePosition' => function ($subject, $x, $y) {
+                return ( $subject->getX() == $x || $subject->getY() == $y  );
+            },
 
+        ];
+    }
 
 
 }

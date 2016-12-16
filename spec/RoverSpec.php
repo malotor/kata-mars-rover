@@ -148,6 +148,13 @@ class RoverSpec extends ObjectBehavior
         $this->getAspect()->shouldReturn("E");
     }
 
+    function it_should_move_to_corner_of_the_map()
+    {
+        $this->beConstructedThrough("create",[0,0],[100,100]);
+        $this->move("x");
+        $this->getPosition()->shouldHavePosition(100,100);
+    }
+
     public function getMatchers()
     {
         return [

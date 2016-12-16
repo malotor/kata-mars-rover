@@ -44,7 +44,8 @@ class Rover
     public function move($command)
     {
 
-        switch ($command)
+        foreach ( str_split($command) as $c)
+        switch ($c)
         {
             case 'f':
                 $this->moveForward();

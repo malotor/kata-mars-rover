@@ -135,6 +135,13 @@ class RoverSpec extends ObjectBehavior
 
     }
 
+    function it_should_accept_several_command()
+    {
+        $this->move("rff");
+        $this->getPosition()->shouldHavePosition(2,0);
+        $this->getAspect()->shouldReturn("E");
+    }
+
     public function getMatchers()
     {
         return [

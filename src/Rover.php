@@ -4,6 +4,7 @@ namespace Prosodie\MarsRover;
 
 use Prosodie\MarsRover\Aspects\North;
 use Prosodie\MarsRover\Aspects\South;
+use Prosodie\MarsRover\Commands;
 
 class Rover
 {
@@ -45,39 +46,46 @@ class Rover
     {
 
         foreach ( str_split($command) as $c)
-        switch ($c)
         {
-            case 'f':
-                $this->moveForward();
-                break;
-            case 'b':
-                $this->moveBackward();
-                break;
-            case 'l':
-                $this->turnLeft();
-                break;
-            case 'r':
-                $this->turnRight();
-                break;
+            switch ($c)
+            {
+                case 'f':
+                    $command = new Commands\ForwardCommand();
+                    break;
+                case 'b':
+                    $command = new Commands\BackwardCommand();
+                    break;
+                case 'l':
+                    $command = new Commands\TurnleftCommand();
+                    break;
+                case 'r':
+                    $command = new Commands\TurnrightCommand();
+                    break;
+                default:
+                    throw new \Exception("The command doesn't exists");
+                    break;
+            }
+            $command->execute($this);
         }
+
     }
 
-    private function moveForward()
+    public function moveForward()
     {
         $this->aspect->moveForward();
     }
 
-    private function moveBackward()
+    public function moveBackward()
     {
         $this->aspect->moveBackward();
     }
 
-    private function turnLeft()
+    public function turnLeft()
     {
         $this->aspect->turnLeft();
     }
 
-    private function turnRight()
+    public function turnRight()
     {
         $this->aspect->turnRight();
     }

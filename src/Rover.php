@@ -2,6 +2,7 @@
 
 namespace Prosodie\MarsRover;
 
+use Prosodie\MarsRover\Aspects\AspectFactory;
 use Prosodie\MarsRover\Aspects\North;
 use Prosodie\MarsRover\Aspects\South;
 use Prosodie\MarsRover\Commands;
@@ -14,11 +15,7 @@ class Rover
 
     public function __construct(Position $position, $aspect = 'N')
     {
-        if ($aspect == 'N')
-            $this->aspect = new North($this);
-        elseif ($aspect == 'S')
-            $this->aspect = new South($this);
-
+        $this->aspect = AspectFactory::create($aspect,$this);
         $this->position = $position;
     }
 
@@ -45,12 +42,17 @@ class Rover
     public function move($command)
     {
 
-        foreach ( str_split($command) as $c)
+        foreach ( $this->parseCommands($command) as $c)
         {
             $command = Commands\CommandFactory::getCommand($c);
             $command->execute($this);
         }
 
+    }
+
+    private function parseCommands($input)
+    {
+        return str_split($input);
     }
 
     public function moveForward()
@@ -76,7 +78,6 @@ class Rover
     static public function create($cordX = 0, $cordY = 0, $aspect = 'N')
     {
         $position = new Position($cordX, $cordY);
-
-        return new Self($position, $aspect);
+        return new self($position, $aspect);
     }
 }

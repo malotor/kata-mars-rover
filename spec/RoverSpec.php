@@ -42,33 +42,19 @@ class RoverSpec extends ObjectBehavior
 
     function it_should_move_along_Y_when_command_forward_is_received()
     {
-        $this->move("f");
-        $this->getPosition()->shouldHavePosition(0,1);
-
-        $this->move("f");
+        $this->move("ff");
         $this->getPosition()->shouldHavePosition(0,2);
 
-        $this->move("b");
-        $this->getPosition()->shouldHavePosition(0,1);
-
-        $this->move("b");
+        $this->move("bb");
         $this->getPosition()->shouldHavePosition(0,0);
 
-        $this->move("l");
-        $this->move("l");
-
+        $this->move("ll");
         $this->getAspect()->shouldReturn("S");
 
-        $this->move("f");
-        $this->getPosition()->shouldHavePosition(0,-1);
-
-        $this->move("f");
+        $this->move("ff");
         $this->getPosition()->shouldHavePosition(0,-2);
 
-        $this->move("b");
-        $this->getPosition()->shouldHavePosition(0,-1);
-
-        $this->move("b");
+        $this->move("bb");
         $this->getPosition()->shouldHavePosition(0,0);
 
     }
@@ -107,36 +93,18 @@ class RoverSpec extends ObjectBehavior
 
     function it_should_move_along_X_when_command_forward_is_received_and_facing_W()
     {
-        $this->move("l");
-        $this->getAspect()->shouldReturn("W");
-        $this->move("f");
-        $this->getPosition()->shouldHavePosition(-1,0);
-        $this->move("f");
+        $this->move("lff");
         $this->getPosition()->shouldHavePosition(-2,0);
-
-
-        $this->move("b");
-        $this->getPosition()->shouldHavePosition(-1,0);
-
-        $this->move("b");
+        $this->move("bb");
         $this->getPosition()->shouldHavePosition(0,0);
 
     }
 
     function it_should_move_along_X_when_command_forward_is_received_and_facing_E()
     {
-        $this->move("r");
-        $this->getAspect()->shouldReturn("E");
-        $this->move("f");
-        $this->getPosition()->shouldHavePosition(1,0);
-        $this->move("f");
+        $this->move("rff");
         $this->getPosition()->shouldHavePosition(2,0);
-
-
-        $this->move("b");
-        $this->getPosition()->shouldHavePosition(1,0);
-
-        $this->move("b");
+        $this->move("bb");
         $this->getPosition()->shouldHavePosition(0,0);
 
     }
@@ -148,12 +116,14 @@ class RoverSpec extends ObjectBehavior
         $this->getAspect()->shouldReturn("E");
     }
 
+    /*
     function it_should_move_to_corner_of_the_map()
     {
         $this->beConstructedThrough("create",[0,0],[100,100]);
         $this->move("x");
         $this->getPosition()->shouldHavePosition(100,100);
     }
+    */
 
     public function getMatchers()
     {

@@ -47,24 +47,7 @@ class Rover
 
         foreach ( str_split($command) as $c)
         {
-            switch ($c)
-            {
-                case 'f':
-                    $command = new Commands\ForwardCommand();
-                    break;
-                case 'b':
-                    $command = new Commands\BackwardCommand();
-                    break;
-                case 'l':
-                    $command = new Commands\TurnleftCommand();
-                    break;
-                case 'r':
-                    $command = new Commands\TurnrightCommand();
-                    break;
-                default:
-                    throw new \Exception("The command doesn't exists");
-                    break;
-            }
+            $command = Commands\CommandFactory::getCommand($c);
             $command->execute($this);
         }
 

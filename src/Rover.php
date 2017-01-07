@@ -3,8 +3,6 @@
 namespace Prosodie\MarsRover;
 
 use Prosodie\MarsRover\Aspects\AspectFactory;
-use Prosodie\MarsRover\Aspects\North;
-use Prosodie\MarsRover\Aspects\South;
 use Prosodie\MarsRover\Commands;
 
 class Rover

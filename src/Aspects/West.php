@@ -12,13 +12,13 @@ class West extends Aspect
 
     public function moveForward(Rover $rover)
     {
-        $rover->setPosition( new Position($rover->getPosition()->getX() - 1 , $rover->getPosition()->getY()  ) );
+        $rover->setPosition( $rover->getPosition()->decrementX()  );
 
     }
 
     public function moveBackward(Rover $rover)
     {
-        $rover->setPosition( new Position($rover->getPosition()->getX() +1 , $rover->getPosition()->getY()  ) );
+        $rover->setPosition( $rover->getPosition()->incrementX()  );
     }
 
     public function turnLeft(Rover $rover)

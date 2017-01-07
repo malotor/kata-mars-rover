@@ -36,7 +36,25 @@ class Position
         return $this->y;
     }
 
+    public function incrementX()
+    {
+        return new Position($this->getX() +1 , $this->getY()  );
+    }
 
+    public function decrementX()
+    {
+        return new Position($this->getX() -1 , $this->getY()  );
+    }
+
+    public function incrementY()
+    {
+        return new Position($this->getX() , $this->getY()  +1  );
+    }
+
+    public function decrementY()
+    {
+        return new Position($this->getX() , $this->getY()  -1 );
+    }
 
 
 }

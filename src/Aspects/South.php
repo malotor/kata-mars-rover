@@ -12,12 +12,12 @@ class South extends Aspect
 
     public function moveForward(Rover $rover)
     {
-        $rover->setPosition( new Position($rover->getPosition()->getX(), $rover->getPosition()->getY() - 1 ) );
+        $rover->setPosition( $rover->getPosition()->decrementY() );
     }
 
     public function moveBackward(Rover $rover)
     {
-        $rover->setPosition( new Position($rover->getPosition()->getX(), $rover->getPosition()->getY() + 1 ) );
+        $rover->setPosition( $rover->getPosition()->incrementY() );
     }
 
     public function turnLeft(Rover $rover)

@@ -3,18 +3,20 @@
 namespace Prosodie\MarsRover;
 
 use Prosodie\MarsRover\Aspects\AspectFactory;
-use Prosodie\MarsRover\Commands;
 
 class Rover
 {
 
     private $position;
     private $aspect;
+    private $commandProcessor;
 
-    public function __construct(Position $position, $aspect = 'N')
+
+    public function __construct(Position $position, Aspect $aspect)
     {
-        $this->aspect = AspectFactory::create($aspect,$this);
+        $this->aspect = $aspect;
         $this->position = $position;
+        $this->commandProcessor = new CommandProcessor($this);
     }
 
     public function getAspect()
@@ -37,21 +39,11 @@ class Rover
         $this->aspect = $aspect;
     }
 
-    public function move($command)
+    public function move($commandSequence)
     {
-
-        foreach ( $this->parseCommands($command) as $c)
-        {
-            $command = Commands\CommandFactory::getCommand($c);
-            $command->execute($this);
-        }
-
+        $this->commandProcessor->process($commandSequence);
     }
 
-    private function parseCommands($input)
-    {
-        return str_split($input);
-    }
 
     public function moveForward()
     {

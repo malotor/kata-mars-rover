@@ -2,17 +2,12 @@
 
 namespace Prosodie\MarsRover;
 
+use Prosodie\MarsRover\Rover;
+
 abstract class Aspect
 {
-    protected $rover;
-
-    public function __construct(Rover $rover)
-    {
-        $this->rover = $rover;
-    }
-
-    abstract public function moveForward();
-    abstract function moveBackward();
-    abstract function turnLeft();
-    abstract function turnRight();
+    abstract public function moveForward(Rover $rover);
+    abstract function moveBackward(Rover $rover);
+    abstract function turnLeft(Rover $rover);
+    abstract function turnRight(Rover $rover);
 }

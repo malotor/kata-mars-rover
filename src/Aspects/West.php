@@ -4,30 +4,31 @@ namespace Prosodie\MarsRover\Aspects;
 
 use Prosodie\MarsRover\Aspect;
 use Prosodie\MarsRover\Position;
+use Prosodie\MarsRover\Rover;
 
 class West extends Aspect
 {
     const name = 'W';
 
-    public function moveForward()
+    public function moveForward(Rover $rover)
     {
-        $this->rover->setPosition( new Position($this->rover->getPosition()->getX() - 1 , $this->rover->getPosition()->getY()  ) );
+        $rover->setPosition( new Position($rover->getPosition()->getX() - 1 , $rover->getPosition()->getY()  ) );
 
     }
 
-    public function moveBackward()
+    public function moveBackward(Rover $rover)
     {
-        $this->rover->setPosition( new Position($this->rover->getPosition()->getX() +1 , $this->rover->getPosition()->getY()  ) );
+        $rover->setPosition( new Position($rover->getPosition()->getX() +1 , $rover->getPosition()->getY()  ) );
     }
 
-    public function turnLeft()
+    public function turnLeft(Rover $rover)
     {
-        $this->rover->setAspect(new South($this->rover) );
+        $rover->setAspect(new South() );
     }
 
-    public function turnRight()
+    public function turnRight(Rover $rover)
     {
-        $this->rover->setAspect( new North($this->rover) );
+        $rover->setAspect( new North() );
     }
 
     public function __toString()

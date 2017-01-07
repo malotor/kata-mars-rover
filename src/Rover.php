@@ -57,27 +57,28 @@ class Rover
 
     public function moveForward()
     {
-        $this->aspect->moveForward();
+        $this->aspect->moveForward($this);
     }
 
     public function moveBackward()
     {
-        $this->aspect->moveBackward();
+        $this->aspect->moveBackward($this);
     }
 
     public function turnLeft()
     {
-        $this->aspect->turnLeft();
+        $this->aspect->turnLeft($this);
     }
 
     public function turnRight()
     {
-        $this->aspect->turnRight();
+        $this->aspect->turnRight($this);
     }
 
     static public function create($cordX = 0, $cordY = 0, $aspect = 'N')
     {
         $position = new Position($cordX, $cordY);
+        $aspect = AspectFactory::create($aspect);
         return new self($position, $aspect);
     }
 }

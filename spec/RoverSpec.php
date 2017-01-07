@@ -5,6 +5,7 @@ namespace spec\Prosodie\MarsRover;
 use Prosodie\MarsRover\Rover;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Prosodie\MarsRover\Grid;
 
 class RoverSpec extends ObjectBehavior
 {
@@ -116,14 +117,17 @@ class RoverSpec extends ObjectBehavior
         $this->getAspect()->shouldReturn("E");
     }
 
-    /*
-    function it_should_move_to_corner_of_the_map()
+
+    function it_should_move_to_corner_of_the_map(Grid $grid)
     {
-        $this->beConstructedThrough("create",[0,0],[100,100]);
-        $this->move("x");
+        $grid->getTopEdge()->willReturn(100);
+        $grid->getRightEdge()->willReturn(100);
+
+        $this->beConstructedThrough("create",[0,0],$grid);
+        $this->move("tl");
         $this->getPosition()->shouldHavePosition(100,100);
     }
-    */
+
 
     public function getMatchers()
     {
